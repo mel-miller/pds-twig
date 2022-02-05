@@ -93,5 +93,5 @@ const watchStyles = () => {
 };
 
 exports.build = series(compileStyles, compileTwig, compileImg, compileFonts);
-exports.publish = series(compileStyles, compileTwig, compileImg, compileFonts, publishComposer);
+exports.publish = series(publishComposer);
 exports.default = series(compileStyles, watchStyles);

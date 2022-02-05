@@ -9,7 +9,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Compile and Publish
+      - name: Install and Build
         run: |
           yarn
-          yarn gulp publish
+          yarn gulp build
+      - name: Build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-directory
+          path: dist
+      - name: Publish
+        run: yarn gulp publish
