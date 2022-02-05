@@ -1,0 +1,68 @@
+.btn {
+	font-family: "Tablet Gothic", sans-serif;
+	font-weight: 700;
+	line-height: 1;
+	border-radius: 0px;
+	border: 3px solid;
+	transition: background-color 0.3s ease 0s, border-color 0.3s ease 0s;
+}
+
+.btn:hover {
+	background-color: var(--accent-1-color);
+	border-color: var(--accent-1-color);
+	color: white;
+}
+
+/* Button types */
+.btn--primary {
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
+	color: black;
+}
+
+.btn--secondary {
+	background-color: white;
+	border-color: black;
+	color: black;
+}
+
+.btn--tertiary {
+	background-color: black;
+	border-color: black;
+	color: white;
+}
+
+.btn--ghost-purple {
+	background-color: white;
+	border-color: var(--accent-1-color);
+	color: var(--accent-1-color);
+}
+
+.btn--ghost-white {
+	background-color: black;
+	border-color: white;
+	color: white;
+}
+
+/* Disabled button */
+.btn[disabled] {
+	background-color: var(--grey-70-color);
+	border-color: var(--grey-70-color);
+	color: white;
+}
+
+/* Button sizes */
+.btn--lg {
+	padding: 18px 40px 16px;
+	font-size: 20px;
+}
+
+.btn--md {
+	padding: 15px 32px 13px;
+	font-size: 18px;
+}
+
+.btn--sm {
+	padding: 12px 28px 10px;
+	font-size: 16px;
+}

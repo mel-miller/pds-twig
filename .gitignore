@@ -1,0 +1,9 @@
+dist
+storybook-static
+build-storybook.log
+
+#### packages ####
+node_modules
+
+#### OS ####
+.DS_Store

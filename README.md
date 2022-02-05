@@ -1,2 +1,3 @@
 # pds-twig
-POC for Twig implementation of PDS.
+
+Storybook + Twig proof of concept for PDS.
