@@ -20,12 +20,14 @@ config.styles = {
 config.public = {
 	css: "public/css",
 	img: "public/img/*",
+	fonts: "public/fonts/**/*",
 };
 config.dist = {
 	css: "dist/css",
 	js: "dist/js",
 	twig: "dist/twig",
 	img: "dist/img",
+	fonts: "dist/fonts",
 };
 
 // Compile all scss to css and minify.
@@ -57,6 +59,12 @@ const compileImg = (done) => {
 	done();
 };
 
+// Compile font files for dist.
+const compileFonts = (done) => {
+	src(config.public.fonts).pipe(dest(config.dist.fonts));
+	done();
+};
+
 // Publish contents of dist directory to pds-drupal repo.
 const publishComposer = (done) => {
 	ghpages.publish(
@@ -84,6 +92,6 @@ const watchStyles = () => {
 	watch([config.styles.global, config.components.scss], compileStyles);
 };
 
-exports.build = series(compileStyles, compileTwig, compileImg);
-exports.publish = series(compileStyles, compileTwig, compileImg, publishComposer);
+exports.build = series(compileStyles, compileTwig, compileImg, compileFonts);
+exports.publish = series(compileStyles, compileTwig, compileImg, compileFonts, publishComposer);
 exports.default = series(compileStyles, watchStyles);
