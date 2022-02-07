@@ -1,0 +1,191 @@
+<Meta title='Drupal Theme Setup' />
+
+# Drupal Theme Setup
+
+This will be a one-time process for integrating these components into a Drupal theme. See the [PDS Demo](https://github.com/mel-miller/pds_demo) theme repository for setup and implementation examples.
+
+## composer.json
+
+See PDS Demo theme's [composer.json](https://github.com/mel-miller/pds_demo/blob/main/composer.json) for a complete example.
+
+<br />
+
+### Require Drupal [Components!](https://www.drupal.org/project/components) module
+
+This will allow us to register a Twig namespace and directly import PDS twig templates into the theme templates.
+
+```
+composer require drupal/components
+```
+
+### Require [composer-installers-extender](https://packagist.org/packages/oomphinc/composer-installers-extender) package
+
+This plugin sits on top of `composer/installers` and will allow us to customize intall paths for custom package types.
+
+```
+composer require oomphinc/composer-installers-extender
+```
+
+### Require [pds-drupal](https://github.com/mel-miller/pds-drupal) as a dev dependency
+
+This package contains all components and assets necessary to use these components within a Drupal theme.
+
+Add the following to the `"repositories"` section your theme's `composer.json` file:
+
+```
+{
+  "type": "vcs",
+  "url": "https://github.com/mel-miller/pds-drupal.git"
+}
+```
+
+then run:
+
+```
+composer require --dev mel-miller/pds-drupal:dev-main
+```
+
+We will be using the `dev-main` branch until tagged releases become available.
+
+<br />
+
+### Configure the "extra" section to accept `design-system` as a package type
+
+This will install the `pds-drupal` package as its own subdirectory within the theme.
+
+```
+"extra": {
+  "installer-types": [
+    "design-system"
+  ],
+  "installer-paths": {
+    "{$name}": [
+      "type:design-system"
+    ]
+  }
+}
+```
+
+### Add post-install and post-update scripts
+
+This will keep your theme directory clean from unnecessary Drupal core files when running Composer commands from the theme directory.
+
+```
+"scripts": {
+  "post-install-cmd": [
+    "rm -rf core/",
+    "rm -rf modules/",
+    "rm -rf profiles/",
+    "rm -rf themes/",
+    "rm -rf vendor/",
+    "rm -rf web/",
+    "rm -rf .gitattributes"
+  ],
+  "post-update-cmd": [
+    "rm -rf core/",
+    "rm -rf modules/",
+    "rm -rf profiles/",
+    "rm -rf themes/",
+    "rm -rf vendor/",
+    "rm -rf web/",
+    "rm -rf .gitattributes"
+  ]
+}
+```
+
+## THEMENAME.libraries.yml
+
+See PDS Demo theme's [pds_demo.libraries.yml](https://github.com/mel-miller/pds_demo/blob/main/pds_demo.libraries.yml) for a complete example.
+
+### Define libraries
+
+Add compiled css from PDS. (JS config coming soon)
+
+```
+global-css:
+  css:
+    theme:
+      pds-drupal/css/main.css: {}
+```
+
+## THEMENAME.info.yml
+
+See PDS Demo theme's [pds_demo.info.yml](https://github.com/mel-miller/pds_demo/blob/main/pds_demo.info.yml) for a complete example.
+
+### Add global libraries
+
+Make theme aware of any global libraries
+
+```
+libraries:
+  - THEMENAME/global-css
+```
+
+### Configure component namespace
+
+Set "pds" as the Twig namspace to reference component Twig files.
+
+```
+component-libraries:
+  pds:
+    paths:
+      - pds-drupal/twig
+```
+
+## THEMENAME.theme
+
+See PDS Demo theme's [pds_demo.theme](https://github.com/mel-miller/pds_demo/blob/main/pds_demo.theme) for a complete example.
+
+### Create preprocess function to set common variables used across components
+
+This is optional, but will eliminate the need to set these variable each time you use a component.
+
+```
+ /**
+ * Implements hook_preprocess().
+ */
+function THEMENAME_preprocess(array &$variables, $hook) {
+  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+
+  // Global template variables.
+  $variables['image_dir'] = $theme_path . '/pds-drupal/img';
+  // More variables TBD //
+}
+
+```
+
+### Create preprocess function to set 'block_bundle' variable
+
+This variable will be used in conjunction with the `block.html.twig` template to programatically set block class names for custom block types.
+
+```
+/**
+ * Implements HOOK_preprocess_block().
+ */
+function THEMENAME_preprocess_block(&$variables) {
+  $content = $variables['elements']['content'];
+  if (isset($content['#block_content']) && $content['#block_content'] instanceof BlockContentInterface) {
+    // Sets block bundle variable for custom block types.
+    $variables['block_bundle'] = $content['#block_content']->bundle();
+  }
+}
+```
+
+### Create block theme suggestions function
+
+This provides more fine-grained theme template suggestions which will aid in mapping components to custom block types.
+
+```
+/**
+ * Implements hook_theme_suggestions_block_alter().
+ */
+function THEMENAME_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+```
+
+## block.html.twig
+
+Use the default [block template](https://github.com/mel-miller/pds_demo/blob/main/templates/block/block.html.twig) provided by the PDS Demo theme.
