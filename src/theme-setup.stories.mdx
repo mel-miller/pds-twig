@@ -1,4 +1,4 @@
-<Meta title='Drupal Theme/Setup' />
+<Meta title='Drupal/Setup' />
 
 # Drupal Theme Setup
 
@@ -9,6 +9,23 @@ This will be a one-time process for integrating these components into a Drupal t
 See PDS Demo theme's [composer.json](https://github.com/mel-miller/pds_demo/blob/main/composer.json) for a complete example.
 
 <br />
+
+### Configure "repositories" section
+
+This will allow us to require any packages hosted on drupal.org, as well as requiring the `mel-miller/pds-drupal` assets package.
+
+```
+"repositories": [
+  {
+    "type": "composer",
+    "url": "https://packages.drupal.org/8"
+  },
+  {
+    "type": "vcs",
+    "url": "https://github.com/mel-miller/pds-drupal.git"
+  }
+]
+```
 
 ### Require Drupal [Components!](https://www.drupal.org/project/components) module
 
@@ -28,30 +45,15 @@ composer require oomphinc/composer-installers-extender
 
 ### Require [pds-drupal](https://github.com/mel-miller/pds-drupal) as a dev dependency
 
-This package contains all components and assets necessary to use these components within a Drupal theme.
-
-Add the following to the `"repositories"` section your theme's `composer.json` file:
-
-```
-{
-  "type": "vcs",
-  "url": "https://github.com/mel-miller/pds-drupal.git"
-}
-```
-
-then run:
+This package contains all components and assets necessary to use these components within a Drupal theme. We will be using the `dev-main` branch until tagged releases become available.
 
 ```
 composer require --dev mel-miller/pds-drupal:dev-main
 ```
 
-We will be using the `dev-main` branch until tagged releases become available.
+### Configure the "extra" section to accept "design-system" as a package type
 
-<br />
-
-### Configure the "extra" section to accept `design-system` as a package type
-
-This will install the `pds-drupal` package as its own subdirectory within the theme.
+This will install the `pds-drupal` package as its own subdirectory within the theme directory.
 
 ```
 "extra": {
@@ -68,7 +70,7 @@ This will install the `pds-drupal` package as its own subdirectory within the th
 
 ### Add post-install and post-update scripts
 
-This will keep your theme directory clean from unnecessary Drupal core files when running Composer commands from the theme directory.
+This will keep your theme directory clean from unnecessary Drupal core files when running Composer commands from within the theme directory.
 
 ```
 "scripts": {
@@ -138,7 +140,7 @@ See PDS Demo theme's [pds_demo.theme](https://github.com/mel-miller/pds_demo/blo
 
 ### Create preprocess function to set common variables used across components
 
-This is optional, but will eliminate the need to set these variable each time you use a component.
+This is optional, but will eliminate the need to set these variable each time you include a component.
 
 ```
  /**
@@ -149,14 +151,14 @@ function THEMENAME_preprocess(array &$variables, $hook) {
 
   // Global template variables.
   $variables['image_dir'] = $theme_path . '/pds-drupal/img';
-  // More variables TBD //
+  // More common variables TBD //
 }
 
 ```
 
 ### Create preprocess function to set 'block_bundle' variable
 
-This variable will be used in conjunction with the `block.html.twig` template to programatically set block class names for custom block types.
+This variable will be used in conjunction with the `block.html.twig` template to programatically set class names for custom block types.
 
 ```
 /**

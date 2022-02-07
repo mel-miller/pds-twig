@@ -1,14 +1,16 @@
-<Meta title='Drupal Theme/Usage Examples' />
+<Meta title='Drupal/Usage' />
 
 # Drupal Theme Usage Examples
 
-There are several ways to consume PDS styles and patterns within the Drupal theme.
+There are multiple ways to consume PDS styles and patterns within the Drupal theme.
 
-## Inclusion within Twig templates (WIP)
+<br />
+
+## Direct inclusion within Twig templates
 
 Drupal template files must me stored in the `templates` directory at the root of the theme and must contain the `.html.twig` extension.
 
-However, The Components! module was designed to be able to reference Twig files from outside of your theme's `templates` directory. During the theme setup, we configured the theme to look within the `pds-drupal` directory by referencing the `@pds` Twig namespace.
+However, The [Components!](https://www.drupal.org/project/components) module was designed to be able to reference Twig files from outside of your theme's `templates` directory. During the theme setup, we configured the theme to look within the `pds-drupal` directory by referencing the `@pds` Twig namespace.
 
 We can then use `include` (or `embed`, `extends`, etc...) to call the PDS Twig file from within the Drupal Twig file.
 
@@ -28,4 +30,32 @@ Here is an example of a Drupal theme template — `/templates/block/block--quot
 
 In this example we are extending the default `block.html.twig` template, but are replacing the contents of the `content` block from the original template with the contents of `quote.twig`.
 
-We use `with` to map Drupal field values to the Twig variables as the template is being included. Alternatively, you can set the variables before including the template — either by using `{% set %}` earlier in the Twig template or by setting the variables globally with a preprocess function.
+We use the keyword `with` to map Drupal field values to the original Twig variables as the template is being included. Alternatively, we can set the variables before including the template — either by using `{% set %}` earlier in the Twig template or by setting the variables globally with a preprocess function.
+
+Use of the [Twig Vardumper](https://www.drupal.org/project/twig_vardumper) Drupal module is extremely helpful for identifying available Drupal variables within each template.
+
+This method is recommended (whenever possible) — instead of manually recreating the templates in Drupal — as it will set us up for success in keeping the theme in sync with the design system.
+
+<br />
+
+## Apply classes to existing templates
+
+In some cases — usually with primitive components — it is not necessary to replace the markup provided by Drupal.
+
+For example, within the submit button template — `/templates/input/input--submit.html.twig` — we can use the `addClass` function to add additional classes to the existing attributes.
+
+```
+<input{{ attributes.addClass('btn btn--primary btn--sm') }} />{{ children }}
+```
+
+<br />
+
+## Extend CSS classes
+
+(WIP)
+
+<br />
+
+## Apply PDS libraries
+
+(WIP)

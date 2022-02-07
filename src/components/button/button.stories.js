@@ -2,7 +2,7 @@ import TwigButton from "./button.twig";
 import ButtonSource from "!!raw-loader!./button.twig";
 
 export default {
-	title: "Button",
+	title: "Components/Button",
 	parameters: {
 		componentSource: {
 			code: ButtonSource,

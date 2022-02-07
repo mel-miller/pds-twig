@@ -2,7 +2,7 @@ import TwigQuote from "./quote.twig";
 import QuoteSource from "!!raw-loader!./quote.twig";
 
 export default {
-	title: "Quote",
+	title: "Components/Quote",
 	parameters: {
 		componentSource: {
 			code: QuoteSource,
