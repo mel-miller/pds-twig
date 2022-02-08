@@ -1,7 +1,7 @@
 import { addDecorator } from "@storybook/html";
 import { useEffect } from "@storybook/client-api";
 import "./_drupal.js";
-import "../public/css/main.css";
+import "../public/css/pds-main.css";
 
 const Twig = require("twig");
 const { addDrupalExtensions } = require("drupal-twig-extensions/twig");

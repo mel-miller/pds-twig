@@ -17,7 +17,7 @@ config.components = {
 	twig: "src/components/**/*.twig",
 };
 config.styles = {
-	main: "src/styles/main.scss",
+	main: "src/styles/pds-main.scss",
 	global: "src/styles/**/_*.scss",
 };
 config.public = {
@@ -53,7 +53,7 @@ const compileStyles = (done) => {
 // Compile component js to a single file and minify.
 const compileJs = (done) => {
 	src(config.components.js)
-		.pipe(concat("main.js"))
+		.pipe(concat("pds-main.js"))
 		.pipe(dest(config.dist.js))
 		.pipe(
 			minify({
