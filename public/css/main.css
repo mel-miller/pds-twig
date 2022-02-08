@@ -46,6 +46,7 @@
   --accent-2-color: #de256f;
   --grey-70-color: #b2c1cb;
   --grey-90-color: #f1f1f1;
+  --focus-color: #005a9c;
 }
 
 figure {
@@ -120,6 +121,57 @@ figure {
 .btn--sm {
   padding: 12px 28px 10px;
   font-size: 16px;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.close-btn[disabled] {
+  color: var(--grey-70-color);
+}
+
+.close-btn--black {
+  color: black;
+}
+.close-btn--black:hover {
+  color: var(--accent-1-color);
+}
+
+.close-btn--white {
+  color: white;
+}
+.close-btn--white:hover {
+  color: var(--primary-color);
+}
+
+.modal {
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.32) 0px 1px 8px 0px;
+  padding: 2.5rem;
+  min-height: 100px;
+  display: none;
+}
+.modal .close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+}
+
+.modal--white {
+  background-color: white;
+  color: black;
+}
+
+.modal--black {
+  background-color: black;
+  color: white;
+}
+
+.modal__heading {
+  font-family: "Tablet Gothic", sans-serif;
+  margin-top: 0;
 }
 
 .quote,
