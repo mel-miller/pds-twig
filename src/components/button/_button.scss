@@ -13,6 +13,11 @@
 	color: white;
 }
 
+.btn:focus {
+	outline: 3px solid var(--focus-color);
+	outline-offset: 2px;
+}
+
 /* Button types */
 .btn--primary {
 	background-color: var(--primary-color);
@@ -42,6 +47,10 @@
 	background-color: black;
 	border-color: white;
 	color: white;
+
+	&:focus {
+		outline-color: var(--focus-light-color);
+	}
 }
 
 /* Disabled button */

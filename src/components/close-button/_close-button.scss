@@ -1,6 +1,11 @@
 .close-btn {
 	background-color: transparent;
 	border: none;
+	padding-top: 4px;
+}
+
+.close-btn:focus {
+	outline: 2px solid;
 }
 
 .close-btn[disabled] {
@@ -13,6 +18,10 @@
 	&:hover {
 		color: var(--accent-1-color);
 	}
+
+	&:focus {
+		outline-color: black;
+	}
 }
 
 .close-btn--white {
@@ -20,5 +29,9 @@
 
 	&:hover {
 		color: var(--primary-color);
+	}
+
+	&:focus {
+		outline-color: white;
 	}
 }

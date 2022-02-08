@@ -46,7 +46,8 @@
   --accent-2-color: #de256f;
   --grey-70-color: #b2c1cb;
   --grey-90-color: #f1f1f1;
-  --focus-color: #005a9c;
+  --focus-color: #00749c;
+  --focus-light-color: #37cbff;
 }
 
 figure {
@@ -67,6 +68,11 @@ figure {
   background-color: var(--accent-1-color);
   border-color: var(--accent-1-color);
   color: white;
+}
+
+.btn:focus {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 2px;
 }
 
 /* Button types */
@@ -99,6 +105,9 @@ figure {
   border-color: white;
   color: white;
 }
+.btn--ghost-white:focus {
+  outline-color: var(--focus-light-color);
+}
 
 /* Disabled button */
 .btn[disabled] {
@@ -126,6 +135,11 @@ figure {
 .close-btn {
   background-color: transparent;
   border: none;
+  padding-top: 4px;
+}
+
+.close-btn:focus {
+  outline: 2px solid;
 }
 
 .close-btn[disabled] {
@@ -138,12 +152,18 @@ figure {
 .close-btn--black:hover {
   color: var(--accent-1-color);
 }
+.close-btn--black:focus {
+  outline-color: black;
+}
 
 .close-btn--white {
   color: white;
 }
 .close-btn--white:hover {
   color: var(--primary-color);
+}
+.close-btn--white:focus {
+  outline-color: white;
 }
 
 .modal {
