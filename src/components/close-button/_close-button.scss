@@ -1,0 +1,39 @@
+.close-btn {
+	background-color: transparent;
+	border: none;
+	padding-top: 4px;
+}
+
+.close-btn:focus {
+	outline: 2px solid;
+}
+
+.close-btn[disabled] {
+	color: var(--grey-70-color);
+}
+
+.close-btn--black {
+	color: black;
+
+	&:hover {
+		color: var(--accent-1-color);
+	}
+
+	&:focus {
+		outline-color: var(--accent-1-color);
+		color: var(--accent-1-color);
+	}
+}
+
+.close-btn--white {
+	color: white;
+
+	&:hover {
+		color: var(--primary-color);
+	}
+
+	&:focus {
+		outline-color: var(--primary-color);
+		color: var(--primary-color);
+	}
+}

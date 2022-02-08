@@ -1,10 +1,19 @@
+import { addDecorator } from "@storybook/html";
+import { useEffect } from "@storybook/client-api";
+import "./_drupal.js";
+import "../public/css/main.css";
+
 const Twig = require("twig");
 const { addDrupalExtensions } = require("drupal-twig-extensions/twig");
 
 // Add the extensions for Drupal.
 addDrupalExtensions(Twig);
 
-import "../public/css/main.css";
+// addDecorator deprecated, will need a new solution for this.
+addDecorator((Story) => {
+	useEffect(() => Drupal.attachBehaviors(), []);
+	return Story();
+});
 
 export const parameters = {
 	actions: { argTypesRegex: "^on[A-Z].*" },
