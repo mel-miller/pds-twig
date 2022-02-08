@@ -187,6 +187,11 @@ figure {
   width: 70%;
   box-shadow: rgba(0, 0, 0, 0.32) 0px 1px 8px 0px;
 }
+.modal__content .close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
 
 .modal__content--white {
   background-color: white;
@@ -196,12 +201,6 @@ figure {
 .modal__content--black {
   background-color: black;
   color: white;
-}
-
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
 }
 
 .modal__heading {
