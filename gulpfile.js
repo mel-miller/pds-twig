@@ -1,7 +1,9 @@
 const { dest, series, src, watch } = require("gulp");
 const autoprefixer = require("autoprefixer");
+const concat = require("gulp-concat");
 const cssnano = require("cssnano");
 const ghpages = require("gh-pages");
+const minify = require("gulp-minify");
 const postcss = require("gulp-postcss");
 const sass = require("gulp-sass")(require("sass"));
 const sassGlob = require("gulp-sass-glob");
@@ -10,8 +12,9 @@ const rename = require("gulp-rename");
 // Configuration.
 var config = {};
 config.components = {
-	twig: "src/components/**/*.twig",
 	scss: "src/components/**/_*.scss",
+	js: ["src/components/**/*.js", "!src/components/**/*.stories.js"],
+	twig: "src/components/**/*.twig",
 };
 config.styles = {
 	main: "src/styles/main.scss",
@@ -47,20 +50,42 @@ const compileStyles = (done) => {
 	done();
 };
 
-// Compile Twig files for dist.
-const compileTwig = (done) => {
+// Compile component js to a single file and minify.
+const compileJs = (done) => {
+	src(config.components.js)
+		.pipe(concat("main.js"))
+		.pipe(dest(config.dist.js))
+		.pipe(
+			minify({
+				ext: {
+					min: ".min.js",
+				},
+			})
+		)
+		.pipe(dest(config.dist.js));
+	done();
+};
+
+// Collect individual component js files for dist.
+const collectJs = (done) => {
+	src(config.components.js).pipe(dest(config.dist.js));
+	done();
+};
+
+// Collect Twig files for dist.
+const collectTwig = (done) => {
 	src(config.components.twig).pipe(dest(config.dist.twig));
 	done();
 };
 
-// Compile img files for dist.
-const compileImg = (done) => {
+// Collect img files for dist.
+const collectImg = (done) => {
 	src(config.public.img).pipe(dest(config.dist.img));
 	done();
 };
 
-// Compile font files for dist.
-const compileFonts = (done) => {
+// Collect font files for dist.
+const collectFonts = (done) => {
 	src(config.public.fonts).pipe(dest(config.dist.fonts));
 	done();
 };
@@ -92,6 +117,6 @@ const watchStyles = () => {
 	watch([config.styles.global, config.components.scss], compileStyles);
 };
 
-exports.build = series(compileStyles, compileTwig, compileImg, compileFonts);
-exports.publish = series(compileStyles, compileTwig, compileImg, compileFonts, publishComposer);
+exports.build = series(compileStyles, compileJs, collectJs, collectTwig, collectImg, collectFonts);
+exports.publish = series(compileStyles, compileJs, collectJs, collectTwig, collectImg, collectFonts, publishComposer);
 exports.default = series(compileStyles, watchStyles);
