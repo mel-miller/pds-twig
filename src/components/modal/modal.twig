@@ -1,12 +1,16 @@
-<button id="openBtn" class="btn btn--primary btn--sm">Open Modal</button>
+<button id="openBtn" class="{{ open_classes }}">{{ open_txt }}</button>
 
-<div id="{{ modal_id }}" class="modal modal--{{ bg_color|default("white") }}" tabindex="-1" role="dialog" aria-modal="true">
+<div class="modal">
+  <div class="modal__content modal__content--{{ bg_color|default("white") }}" 
+  tabindex="-1" role="dialog" aria-modal="true">
+    
+    {% include '../close-button/close-button.twig' with {
+      color: (bg_color == "white") ? "black" : "white",
+    } %}
+  
+    {% block modal_content %}
+      {{ content }}
+    {% endblock %}
 
-  {% include '../close-button/close-button.twig' with {
-    color: (bg_color == "white") ? "black" : "white",
-  } %}
-
-  <div class="modal__content">
-    <h2 class="modal__heading">Sample content for modal</h2>
   </div>
 </div>

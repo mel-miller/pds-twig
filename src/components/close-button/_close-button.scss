@@ -20,7 +20,8 @@
 	}
 
 	&:focus {
-		outline-color: black;
+		outline-color: var(--accent-1-color);
+		color: var(--accent-1-color);
 	}
 }
 
@@ -32,6 +33,7 @@
 	}
 
 	&:focus {
-		outline-color: white;
+		outline-color: var(--primary-color);
+		color: var(--primary-color);
 	}
 }

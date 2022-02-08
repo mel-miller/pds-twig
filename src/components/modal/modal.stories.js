@@ -20,14 +20,26 @@ export default {
 				options: ["white", "black"],
 			},
 		},
+		open_txt: {
+			description: "Text for open button",
+		},
+		open_classes: {
+			description: "CSS classes for open button",
+		},
+		content: {
+			description: "Modal content",
+		},
 	},
 	args: {
-		modal_id: "demoModal",
-		bg_color: "white",
+		bg_color: "black",
+		open_txt: "Open Modal",
+		open_classes: "btn btn--primary btn--md",
+		content: "<h2 class='modal__heading'>Sample content for modal</h2>",
 	},
 };
 
-const Template = ({ modal_id, bg_color }) => TwigModal({ modal_id, bg_color });
+const Template = ({ bg_color, open_txt, open_classes, content }) =>
+	TwigModal({ bg_color, open_txt, open_classes, content });
 
 export const Modal = Template.bind({});
 

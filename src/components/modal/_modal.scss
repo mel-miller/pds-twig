@@ -1,25 +1,37 @@
 .modal {
-	position: relative;
-	box-shadow: rgb(0 0 0 / 32%) 0px 1px 8px 0px;
-	padding: 2.5rem;
-	min-height: 100px;
 	display: none;
-
-	.close-btn {
-		position: absolute;
-		top: 1.25rem;
-		right: 1rem;
-	}
+	position: fixed;
+	padding-top: 10%;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.625);
+	z-index: 99;
 }
 
-.modal--white {
+.modal__content {
+	position: relative;
+	padding: 2rem 2.5rem;
+	margin: auto;
+	width: 70%;
+	box-shadow: rgba(0, 0, 0, 0.32) 0px 1px 8px 0px;
+}
+
+.modal__content--white {
 	background-color: white;
 	color: black;
 }
 
-.modal--black {
+.modal__content--black {
 	background-color: black;
 	color: white;
+}
+
+.close-btn {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 }
 
 .modal__heading {
