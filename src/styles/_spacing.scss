@@ -1,0 +1,67 @@
+// Global spacing variables.
+$sp-xs: 16px !default;
+$sp-s: 24px !default;
+$sp-m: 32px !default;
+$sp-l: 40px !default;
+$sp-xl: 48px !default;
+$sp-2xl: 60px !default;
+$sp-3xl: 64px !default;
+
+// Spacing direction values.
+$spacing-directions: (null, -top, -right, -bottom, -left);
+
+// Spacing size values
+$spacing-sizes: (
+	-sp-xs: $sp-xs,
+	-sp-s: $sp-s,
+	-sp-m: $sp-m,
+	-sp-l: $sp-l,
+	-sp-xl: $sp-xl,
+	-sp-2xl: $sp-2xl,
+	-sp-3xl: $sp-3xl
+);
+
+@each $direction in $spacing-directions {
+	@each $size, $value in $spacing-sizes {
+		// If the direction is "null", add margin to all directions.
+		@if $direction == null {
+			.pds-mar-all#{$size} {
+				margin: $value !important;
+			}
+
+			.pds-pad-all#{$size} {
+				padding: $value !important;
+			}
+
+			.pds-mar-tb#{$size} {
+				margin-bottom: $value !important;
+				margin-top: $value !important;
+			}
+
+			.pds-mar-lr#{$size} {
+				margin-left: $value !important;
+				margin-right: $value !important;
+			}
+
+			.pds-pad-tb#{$size} {
+				padding-bottom: $value !important;
+				padding-top: $value !important;
+			}
+
+			.pds-pad-lr#{$size} {
+				padding-left: $value !important;
+				padding-right: $value !important;
+			}
+
+			// Otherwise create individual direction utilities.
+		} @else {
+			.pds-mar#{$direction}#{$size} {
+				margin#{$direction}: $value !important;
+			}
+
+			.pds-pad#{$direction}#{$size} {
+				padding#{$direction}: $value !important;
+			}
+		}
+	} // End $spacing-sizes loop
+} // End $spacing-directions loop
