@@ -31,7 +31,7 @@ export default {
 		},
 	},
 	args: {
-		bg_color: "black",
+		bg_color: "white",
 		open_txt: "Open Modal",
 		open_classes: "btn btn--primary btn--md",
 		content: "<h2 class='modal__heading'>Sample content for modal</h2>",
