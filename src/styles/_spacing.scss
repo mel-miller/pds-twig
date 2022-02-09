@@ -12,13 +12,13 @@ $spacing-directions: (null, -top, -right, -bottom, -left);
 
 // Spacing size values
 $spacing-sizes: (
-	-sp-xs: $sp-xs,
-	-sp-s: $sp-s,
-	-sp-m: $sp-m,
-	-sp-l: $sp-l,
-	-sp-xl: $sp-xl,
-	-sp-2xl: $sp-2xl,
-	-sp-3xl: $sp-3xl
+	"-xs": $sp-xs,
+	"-s": $sp-s,
+	"-m": $sp-m,
+	"-l": $sp-l,
+	"-xl": $sp-xl,
+	"-2xl": $sp-2xl,
+	"-3xl": $sp-3xl,
 );
 
 @each $direction in $spacing-directions {
