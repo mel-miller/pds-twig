@@ -118,6 +118,6 @@ const watchStyles = () => {
 	watch([config.styles.global, config.components.scss], compileStyles);
 };
 
-exports.build = series(compileStyles);
+exports.build = series(compileStyles, compileJs, collectJs, collectTwig, collectImg, collectFonts);
 exports.publish = series(compileStyles, compileJs, collectJs, collectTwig, collectImg, collectFonts, publishComposer);
 exports.default = series(compileStyles, watchStyles);
