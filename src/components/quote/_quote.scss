@@ -1,40 +1,40 @@
-.quote,
-.quote--white {
+.pds-quote,
+.pds-quote--white {
 	background-color: white;
 	color: black;
 }
 
-.quote--light-grey {
+.pds-quote--light-grey {
 	background-color: var(--grey-90-color);
 	color: black;
 }
 
-.quote--black {
+.pds-quote--black {
 	background-color: black;
 	color: white;
 }
 
-.quote figure {
+.pds-quote figure {
 	margin-block-start: 0;
 }
 
-.quote__inner {
+.pds-quote__inner {
 	display: flex;
 	align-items: flex-start;
 	padding: 60px;
 }
 
-.quote__bolt {
+.pds-quote__bolt {
 	fill: var(--primary-color);
 	width: 48px;
 	height: 28px;
 }
 
-.quote__bolt--right {
+.pds-quote__bolt--right {
 	transform: rotateY(180deg);
 }
 
-.quote__text {
+.pds-quote__text {
 	font-family: Adelle, serif;
 	font-size: 32px;
 	line-height: 1.2;
@@ -42,7 +42,7 @@
 	margin: 0px 0px 40px;
 }
 
-.quote__attribution {
+.pds-quote__attribution {
 	font-family: "Tablet Gothic", sans-serif;
 	font-weight: 700;
 	font-size: 16px;

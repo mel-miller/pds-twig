@@ -1,18 +1,18 @@
-.close-btn {
+.pds-close-btn {
 	background-color: transparent;
 	border: none;
 	padding: 4px 6px 2px;
 }
 
-.close-btn:focus {
+.pds-close-btn:focus {
 	outline: 2px solid;
 }
 
-.close-btn[disabled] {
+.pds-close-btn[disabled] {
 	color: var(--grey-70-color);
 }
 
-.close-btn--black {
+.pds-close-btn--black {
 	color: black;
 
 	&:hover {
@@ -25,7 +25,7 @@
 	}
 }
 
-.close-btn--white {
+.pds-close-btn--white {
 	color: white;
 
 	&:hover {

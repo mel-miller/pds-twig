@@ -1,4 +1,4 @@
-.modal {
+.pds-modal {
 	display: none;
 	position: fixed;
 	padding-top: 20%;
@@ -8,9 +8,10 @@
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 99;
+	font-family: "Tablet Gothic", sans-serif;
 }
 
-.modal__content {
+.pds-modal__content {
 	position: relative;
 	padding: 2rem 2.5rem;
 	margin: auto;
@@ -18,24 +19,19 @@
 	max-width: 920px;
 	box-shadow: rgba(0, 0, 0, 0.32) 0px 1px 8px 0px;
 
-	.close-btn {
+	.pds-close-btn {
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
 	}
 }
 
-.modal__content--white {
+.pds-modal__content--white {
 	background-color: white;
 	color: black;
 }
 
-.modal__content--black {
+.pds-modal__content--black {
 	background-color: black;
 	color: white;
-}
-
-.modal__heading {
-	font-family: "Tablet Gothic", sans-serif;
-	margin-top: 0;
 }

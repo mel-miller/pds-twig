@@ -37,8 +37,8 @@ export default {
 		modal_num: 123,
 		bg_color: "white",
 		open_txt: "Open Modal",
-		open_classes: "btn btn--primary btn--md",
-		content: "<h2 class='modal__heading'>Sample content for modal</h2>",
+		open_classes: "pds-btn pds-btn--primary pds-btn--md",
+		content: "Sample content for modal",
 	},
 };
 
