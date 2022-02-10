@@ -5,6 +5,7 @@ const cssnano = require("cssnano");
 const ghpages = require("gh-pages");
 const minify = require("gulp-minify");
 const postcss = require("gulp-postcss");
+const replace = require("gulp-replace");
 const sass = require("gulp-sass")(require("sass"));
 const sassGlob = require("gulp-sass-glob");
 const rename = require("gulp-rename");
@@ -74,7 +75,7 @@ const collectJs = (done) => {
 
 // Collect Twig files for dist.
 const collectTwig = (done) => {
-	src(config.components.twig).pipe(dest(config.dist.twig));
+	src(config.components.twig).pipe(replace("../", "@pds/")).pipe(dest(config.dist.twig));
 	done();
 };
 
