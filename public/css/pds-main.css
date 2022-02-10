@@ -50,11 +50,6 @@
   --focus-light-color: #37cbff;
 }
 
-figure {
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
 .btn {
   font-family: "Tablet Gothic", sans-serif;
   font-weight: 700;
@@ -223,6 +218,10 @@ figure {
 .quote--black {
   background-color: black;
   color: white;
+}
+
+.quote figure {
+  margin-block-start: 0;
 }
 
 .quote__inner {
