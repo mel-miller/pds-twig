@@ -12,6 +12,9 @@ export default {
 		},
 	},
 	argTypes: {
+		modal_num: {
+			type: "number",
+		},
 		bg_color: {
 			description: "Background color",
 			table: { defaultValue: { summary: "white" } },
@@ -31,6 +34,7 @@ export default {
 		},
 	},
 	args: {
+		modal_num: 123,
 		bg_color: "white",
 		open_txt: "Open Modal",
 		open_classes: "btn btn--primary btn--md",
@@ -38,8 +42,8 @@ export default {
 	},
 };
 
-const Template = ({ bg_color, open_txt, open_classes, content }) =>
-	TwigModal({ bg_color, open_txt, open_classes, content });
+const Template = ({ modal_num, bg_color, open_txt, open_classes, content }) =>
+	TwigModal({ modal_num, bg_color, open_txt, open_classes, content });
 
 export const Modal = Template.bind({});
 
