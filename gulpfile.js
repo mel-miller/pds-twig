@@ -18,8 +18,8 @@ config.components = {
 	twig: "src/components/**/*.twig",
 };
 config.styles = {
-	main: "src/styles/pds-main.scss",
 	global: "src/styles/**/_*.scss",
+	main: "src/styles/pds-main.scss",
 };
 config.public = {
 	css: "public/css",
@@ -28,6 +28,7 @@ config.public = {
 };
 config.dist = {
 	css: "dist/css",
+	scss: "dist/scss",
 	js: "dist/js",
 	twig: "dist/twig",
 	img: "dist/img",
@@ -48,6 +49,13 @@ const compileStyles = (done) => {
 			})
 		)
 		.pipe(dest(config.dist.css));
+	done();
+};
+
+// Collect scss for dist.
+const collectScss = (done) => {
+	src([config.styles.global, config.styles.main]).pipe(dest(config.dist.scss));
+	src([config.components.scss]).pipe(dest(config.dist.scss + "/components"));
 	done();
 };
 
@@ -118,6 +126,15 @@ const watchStyles = () => {
 	watch([config.styles.global, config.components.scss], compileStyles);
 };
 
-exports.build = series(compileStyles, compileJs, collectJs, collectTwig, collectImg, collectFonts);
-exports.publish = series(compileStyles, compileJs, collectJs, collectTwig, collectImg, collectFonts, publishComposer);
+exports.build = compileStyles;
+exports.publish = series(
+	compileStyles,
+	compileJs,
+	collectScss,
+	collectJs,
+	collectTwig,
+	collectImg,
+	collectFonts,
+	publishComposer
+);
 exports.default = series(compileStyles, watchStyles);
