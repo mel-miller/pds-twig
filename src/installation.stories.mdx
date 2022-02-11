@@ -1,0 +1,176 @@
+<Meta title='Drupal/Installation' />
+
+# Drupal Installation
+
+This toolkit is designed to be consumed directly within a Drupal theme via the [pds-drupal](https://github.com/mel-miller/pds-drupal) assets package. The package should be required via Composer and contains the following asset types: CSS, SCSS, JS, Twig, images, and fonts.
+
+<br />
+
+## Composer configuration
+
+Instructions will vary based on how you are managing your theme — either as part of your site's repository, or from a separate repository. Both methods are outlined below.
+
+<br />
+
+### Method 1: The theme code is directly integrated within the site's repo
+
+All Composer commands should be run from the project root directory.
+
+<br />
+
+#### Add the repository information for the pds-drupal package
+
+Add the following to the site's composer.json "repositories" section.
+
+```
+{
+  "type": "vcs",
+  "url": "https://github.com/mel-miller/pds-drupal.git"
+}
+```
+
+#### Require Drupal [Components!](https://www.drupal.org/project/components) module
+
+This will allow us to register a Twig namespace and directly import PDS twig templates into the theme templates.
+
+```
+composer require drupal/components
+```
+
+#### Require [composer-installers-extender](https://packagist.org/packages/oomphinc/composer-installers-extender) package
+
+This plugin sits on top of `composer/installers` and will allow us to customize intall paths for custom package types.
+
+```
+composer require oomphinc/composer-installers-extender
+```
+
+#### Configure the "extra" section to accept "design-system" as a package type
+
+This will install the `pds-drupal` package as its own subdirectory within the theme directory.
+
+```
+"extra": {
+  "installer-types": [
+    "design-system"
+  ],
+  "installer-paths": {
+    "path/to/your/theme/{$name}": [
+      "type:design-system"
+    ]
+  }
+}
+
+```
+
+#### Require [pds-drupal](https://github.com/mel-miller/pds-drupal) as a dev dependency
+
+This package contains all components and assets necessary to use these components within a Drupal theme. This directory should be committed along with the rest of your theme files.
+
+We will be using the `dev-main` branch until tagged releases become available.
+
+```
+composer require --dev mel-miller/pds-drupal:dev-main
+
+```
+
+<hr />
+
+### Method 2: The theme is required via its own repository
+
+These instrustions will walk you through setting up a `composer.json` file for a theme with its own repository. See PDS Demo theme's [composer.json](https://github.com/mel-miller/pds_demo/blob/main/composer.json) for a complete example.
+
+All Composer commands should be run from the theme's directory.
+
+<br />
+
+#### Configure "repositories" section
+
+This will allow us to require any packages hosted on drupal.org, as well as requiring the `mel-miller/pds-drupal` assets package.
+
+```
+"repositories": [
+  {
+    "type": "composer",
+    "url": "https://packages.drupal.org/8"
+  },
+  {
+    "type": "vcs",
+    "url": "https://github.com/mel-miller/pds-drupal.git"
+  }
+]
+
+```
+
+#### Require Drupal [Components!](https://www.drupal.org/project/components) module
+
+This will allow us to register a Twig namespace and directly import PDS twig templates into the theme templates.
+
+```
+composer require drupal/components
+```
+
+#### Require [composer-installers-extender](https://packagist.org/packages/oomphinc/composer-installers-extender) package
+
+This plugin sits on top of `composer/installers` and will allow us to customize intall paths for custom package types.
+
+```
+composer require oomphinc/composer-installers-extender
+```
+
+#### Configure the "extra" section to accept "design-system" as a package type
+
+This will install the `pds-drupal` package as its own subdirectory within the theme directory.
+
+```
+"extra": {
+  "installer-types": [
+    "design-system"
+  ],
+  "installer-paths": {
+    "{$name}": [
+      "type:design-system"
+    ]
+  }
+}
+
+```
+
+#### Require [pds-drupal](https://github.com/mel-miller/pds-drupal) as a dev dependency
+
+This package contains all components and assets necessary to use these components within a Drupal theme. This directory should be committed along with the rest of your theme files.
+
+We will be using the `dev-main` branch until tagged releases become available.
+
+```
+composer require --dev mel-miller/pds-drupal:dev-main
+
+```
+
+#### Add post-install and post-update scripts
+
+This will keep your theme directory clean from unnecessary Drupal core files when running Composer commands from within the theme directory.
+
+```
+"scripts": {
+  "post-install-cmd": [
+    "rm -rf core/",
+    "rm -rf modules/",
+    "rm -rf profiles/",
+    "rm -rf themes/",
+    "rm -rf vendor/",
+    "rm -rf web/",
+    "rm -rf .gitattributes"
+  ],
+    "post-update-cmd": [
+    "rm -rf core/",
+    "rm -rf modules/",
+    "rm -rf profiles/",
+    "rm -rf themes/",
+    "rm -rf vendor/",
+    "rm -rf web/",
+    "rm -rf .gitattributes"
+  ]
+}
+
+```
