@@ -22,7 +22,7 @@ Add compiled css from PDS.
 pds-css:
   css:
     theme:
-      pds-drupal/css/pds-main.css: {}
+      pds-drupal/css/pds-main.min.css: {}
 ```
 
 ### Define JS libraries
@@ -40,7 +40,7 @@ Add compiled js from PDS. Because most js code will be wrapped within a Drupal.b
 ```
 pds-js:
   js:
-    pds-drupal/js/pds-main.js: {}
+    pds-drupal/js/pds-main.min.js: {}
   dependencies:
     - core/drupal
 ```
@@ -91,7 +91,7 @@ libraries:
 
 ```
 ckeditor_stylesheets:
-  - pds-drupal/css/pds-main.css
+  - pds-drupal/css/pds-main.min.css
 ```
 
 ### Configure component namespace
