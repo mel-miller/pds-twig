@@ -253,3 +253,40 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+.pds-tabset__tabs {
+  display: flex;
+  width: 100%;
+}
+.pds-tabset__tab-title {
+  padding: 0 2.5rem;
+}
+.pds-tabset__tab {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 1.25rem 0 1rem;
+  font-family: "Tablet Gothic", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  border: none;
+}
+.pds-tabset__tab[aria-selected=true], .pds-tabset__tab:focus {
+  background-color: black;
+  color: white;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pds-tabset__tab:hover {
+    background-color: var(--accent-1-color);
+    color: white;
+  }
+}
+.pds-tabset__panel {
+  padding: 1.5rem 1rem;
+  border-top: 3px solid var(--grey-70-color);
+  font-family: "Tablet Gothic", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}

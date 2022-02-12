@@ -1,0 +1,48 @@
+.pds-tabset {
+	&__tabs {
+		display: flex;
+		width: 100%;
+	}
+
+	&__tab-title {
+		// border-left: 1px solid var(--grey-70-color);
+		padding: 0 2.5rem;
+	}
+
+	&__tab {
+		background-color: white;
+		color: black;
+		cursor: pointer;
+		padding: 1.25rem 0 1rem;
+		font-family: "Tablet Gothic", sans-serif;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1;
+		border: none;
+
+		&[aria-selected="true"],
+		&:focus {
+			background-color: black;
+			color: white;
+		}
+
+		@media (hover: hover) and (pointer: fine) {
+			&:hover {
+				background-color: var(--accent-1-color);
+				color: white;
+			}
+		}
+	}
+
+	&__panel {
+		padding: 1.5rem 1rem;
+		border-top: 3px solid var(--grey-70-color);
+		font-family: "Tablet Gothic", sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.5;
+
+		&:focus {
+		}
+	}
+}
