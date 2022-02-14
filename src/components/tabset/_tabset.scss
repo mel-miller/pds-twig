@@ -10,11 +10,11 @@
 	}
 
 	&__tab {
-		background-color: white;
-		color: black;
+		background-color: var(--white-color);
+		color: var(--black-color);
 		cursor: pointer;
 		padding: 1.25rem 0 1rem;
-		font-family: "Tablet Gothic", sans-serif;
+		font-family: var(--sans-font);
 		font-size: 18px;
 		font-weight: 400;
 		line-height: 1;
@@ -22,14 +22,14 @@
 
 		&[aria-selected="true"],
 		&:focus {
-			background-color: black;
-			color: white;
+			background-color: var(--black-color);
+			color: var(--white-color);
 		}
 
 		@media (hover: hover) and (pointer: fine) {
 			&:hover {
 				background-color: var(--accent-1-color);
-				color: white;
+				color: var(--white-color);
 			}
 		}
 	}
@@ -37,7 +37,7 @@
 	&__panel {
 		padding: 1.5rem 1rem;
 		border-top: 3px solid var(--grey-70-color);
-		font-family: "Tablet Gothic", sans-serif;
+		font-family: var(--sans-font);
 		font-size: 16px;
 		font-weight: 400;
 		line-height: 1.5;
