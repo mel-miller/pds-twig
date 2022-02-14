@@ -1,4 +1,4 @@
-Drupal.behaviors.modal = {
+Drupal.behaviors.tabset = {
 	attach(context) {
 		const tabsetClass = "pds-tabset";
 
