@@ -8,11 +8,14 @@
       {% set panel = '' %}
       {% set panelId = 'pds-tabset__panel--' ~ tab.id %}
       {% set panelVisibility = (isTabSelected) ? '' : 'hidden="hidden"' %}
-      <button id="{{ tabId }}" class="pds-tabset__tab" role="tab" aria-selected="{{ isTabSelected }}" aria-controls="{{ panelId }}" {{ tabTabIndex }}>
-        <div class="pds-tabset__tab-title">{{ tab.title }}</div>
+      
+      <button id="{{ tabId }}" {% if tab.disabled -%} disabled {% endif -%} class="pds-tabset__tab" role="tab" aria-selected="{{ isTabSelected }}" aria-controls="{{ panelId }}" {{ tabTabIndex }}>
+        <div class="pds-tabset__tab-title">
+          {{ tab.title }}
+        </div>
       </button>
       {% set panel %}
-        <div id="{{ panelId }}" class="pds-tabset__panel" role="tabpanel" aria-labelledby="{{ tabId }}" tabindex="0" {{panelVisibility}}>
+        <div id="{{ panelId }}" class="pds-tabset__panel" role="tabpanel" aria-labelledby="{{ tabId }}" tabindex="0" {{ panelVisibility }}>
         {{ tab.content }}
         </div>
       {% endset %}
