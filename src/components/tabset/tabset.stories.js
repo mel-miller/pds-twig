@@ -41,7 +41,6 @@ export default {
 			},
 			5: {
 				id: "005",
-				disabled: true,
 				title: "Tab 5",
 				content:
 					"Test content for tab 5. Shoreditch retro actually selvage celiac activated charcoal try-hard. Schlitz swag roof party pok pok la croix.",
