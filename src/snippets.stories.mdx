@@ -1,0 +1,55 @@
+<Meta title='Utilities/Code Snippets' />
+
+# VS Code Snippets
+
+Here are some snippets you can add to your VS Code configuration to aid with development of this toolkit.
+
+<br />
+
+## Twig Story (sbtwig)
+
+For creation of the `COMPONENT.stories.js` file.
+
+```
+"Twig Story": {
+  "prefix": "sbtwig",
+  "body": [
+    "import Twig${TM_FILENAME_BASE/([^.]+).*/${1:/capitalize}/} from \"./${TM_FILENAME_BASE/([^.]+).*/${1}/}.twig\";",
+    "import ${TM_FILENAME_BASE/([^.]+).*/${1:/capitalize}/}Source from \"!!raw-loader!./${TM_FILENAME_BASE/([^.]+).*/${1}/}.twig\";",
+    "",
+    "import \"./${TM_FILENAME_BASE/([^.]+).*/${1}/}.js\";",
+    "",
+    "",
+    "export default {",
+    "  title: \"Components/${TM_FILENAME_BASE/([^.]+).*/${1:/capitalize}/}\",",
+    "  parameters: {",
+    "    componentSource: {",
+    "      code: ${TM_FILENAME_BASE/([^.]+).*/${1:/capitalize}/}Source,",
+    "      language: \"twig\",",
+    "    },",
+    "  },",
+    "  argTypes: {},",
+    "  args: {},",
+    "};",
+    "",
+    "const Template = ({}) =>",
+    "	Twig${TM_FILENAME_BASE/([^.]+).*/${1:/capitalize}/}({});",
+    "",
+    "export const ${TM_FILENAME_BASE/([^.]+).*/${1:/capitalize}/} = Template.bind({});"
+  ],
+  "description": "Twig Story"
+}
+
+```
+
+## Drupal Behavior (drbh)
+
+For creation of the `COMPONENT.js` file, which requires any component-based JavaScript to be wrapped in a Drupal behavior.
+
+```
+"Drupal Behavior": {
+  "prefix": "drbh",
+  "body": ["Drupal.behaviors.${TM_FILENAME_BASE} = {", "  attach(context) {", "    	", "  },", "};", ""],
+  "description": "Drupal Behavior"
+}
+```
