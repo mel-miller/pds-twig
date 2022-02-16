@@ -287,7 +287,10 @@
   font-weight: 600;
   line-height: 27px;
   border: none;
-  margin-right: 1px;
+  margin-right: 2px;
+}
+.pds-tabset__tab:last-child {
+  margin-right: 0;
 }
 .pds-tabset__tab[aria-selected=true], .pds-tabset__tab:focus {
   background-color: var(--black-color);
@@ -304,7 +307,7 @@
 }
 
 .pds-tabset__tab-title {
-  border-left: 1px solid var(--grey-70-color);
+  border-left: 2px solid var(--grey-70-color);
 }
 
 .pds-tabset__tab:first-child .pds-tabset__tab-title {
