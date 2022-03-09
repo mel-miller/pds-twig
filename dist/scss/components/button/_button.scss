@@ -1,0 +1,111 @@
+.pds-btn {
+	font-family: var(--sans-font);
+	font-weight: 700;
+	line-height: 1;
+	border-radius: 0px;
+	border: 3px solid;
+	transition: background-color 0.3s ease 0s, border-color 0.3s ease 0s;
+}
+
+.pds-btn:hover {
+	background-color: var(--accent-1-color);
+	border-color: var(--accent-1-color);
+	color: var(--white-color);
+}
+
+.pds-btn:hover:focus {
+	outline: none;
+}
+
+// Button types
+.pds-btn--primary {
+	background-color: aqua;
+	border-color: var(--primary-color);
+	color: var(--black-color);
+
+	&:focus {
+		outline: 3px solid var(--white-color);
+		outline-offset: -5px;
+	}
+}
+
+.pds-btn--secondary {
+	background-color: var(--white-color);
+	border-color: var(--black-color);
+	color: var(--black-color);
+	&:focus {
+		outline: 2px solid var(--black-color);
+	}
+}
+
+.pds-btn--tertiary {
+	background-color: var(--black-color);
+	border-color: var(--black-color);
+	color: var(--white-color);
+	&:focus {
+		outline: 3px solid var(--white-color);
+		outline-offset: -5px;
+	}
+}
+
+.pds-btn--ghost-purple {
+	background-color: var(--white-color);
+	border-color: var(--accent-1-color);
+	color: var(--accent-1-color);
+	&:focus {
+		outline: 2px solid var(--accent-1-color);
+	}
+}
+
+.pds-btn--ghost-white {
+	background-color: var(--black-color);
+	border-color: var(--white-color);
+	color: var(--white-color);
+	&:focus {
+		outline: 2px solid var(--white-color);
+	}
+}
+
+// Disabled button
+.pds-btn[disabled] {
+	background-color: var(--grey-70-color);
+	border-color: var(--grey-70-color);
+	color: var(--white-color);
+}
+
+// Button sizes
+.pds-btn--lg {
+	padding: 18px 40px 16px;
+	font-size: 20px;
+}
+
+.pds-btn--md {
+	padding: 15px 32px 13px;
+	font-size: 18px;
+}
+
+.pds-btn--sm {
+	padding: 12px 28px 10px;
+	font-size: 16px;
+}
+
+// Compensate for focus outline on hollow buttons.
+.pds-btn--secondary,
+.pds-btn--ghost-purple,
+.pds-btn--ghost-white {
+	&.pds-btn--lg:focus {
+		outline-offset: -8px;
+		padding: 19px 41px 17px;
+		border: 2px solid;
+	}
+	&.pds-btn--md:focus {
+		outline-offset: -7px;
+		padding: 16px 33px 14px;
+		border: 2px solid;
+	}
+	&.pds-btn--sm:focus {
+		outline-offset: -6px;
+		padding: 13px 29px 11px;
+		border: 2px solid;
+	}
+}
