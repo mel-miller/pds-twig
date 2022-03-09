@@ -19,3 +19,7 @@ jobs:
         with:
           branch: gh-pages
           folder: storybook-static
+      - name: Publish to dist
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Deploy to dist"

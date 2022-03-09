@@ -127,14 +127,5 @@ const watchStyles = () => {
 };
 
 exports.build = compileStyles;
-exports.publish = series(
-	compileStyles,
-	compileJs,
-	collectScss,
-	collectJs,
-	collectTwig,
-	collectImg,
-	collectFonts,
-	publishComposer
-);
+exports.publish = series(compileStyles, compileJs, collectScss, collectJs, collectTwig, collectImg, collectFonts);
 exports.default = series(compileStyles, watchStyles);
